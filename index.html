@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Todolist</title>
+
+        <link rel="stylesheet" href="static/styles.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <form method="post">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Done</th>
+                            <th scope="col">Created on</th>
+                            <th scope="col">Due on</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Task</th>
+                            <th scope="col">Archive</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{range .Todos}}
+                        <tr class="{{.Status}}">
+                            <td><button class="btn btn-sm btn-success" formaction="/done" type="submit" value="{{.ID}}" name="submit"><i class="fa fa-check" aria-hidden="true"></i></button></td>
+                            <td>{{.CreatedOn}}</td>
+                            <td>{{.DueOn}}</td>
+                            <td>{{.Status}}</td>
+                            <td>{{.Description}}</td>
+                            <td><button class="btn btn-sm btn-danger" formaction="/archive" type="submit" value="{{.ID}}" name="submit"><i class="fa fa-trash" aria-hidden="true"></i></button></div></td>
+                        </tr>
+                        {{end}}
+                    </tbody>
+                </table>
+            </form>
+            <form class="form-inline" action="/" method="post">
+                <div class="form-group">
+                    <input class="col-auto form-control" type="text" name="todo" placeholder="Task">
+                    <input class="col-auto form-control" type="text" name="due" placeholder="Due date (YYYY/MM/DD)">
+                    <input class="col-auto btn btn-primary" type="submit" value="Add" name="submit">
+                </div>
+            </form>
+        </div>
+
+        <script src="https://use.fontawesome.com/8515f11725.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+    </body>
+</html>
